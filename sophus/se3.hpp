@@ -606,6 +606,25 @@ class SE3 : public SE3Base<SE3<Scalar_, Options>> {
     return SE3(SO3<Scalar>::rotZ(z), Sophus::Vector3<Scalar>::Zero());
   }
 
+  SOPHUS_FUNC static Point generatorTimes(int i, const Point& p) {
+    switch (i) {
+      case 0:
+        return Point(Scalar(1), Scalar(0), Scalar(0));
+      case 1:
+        return Point(Scalar(0), Scalar(1), Scalar(0));
+      case 2:
+        return Point(Scalar(0), Scalar(0), Scalar(1));
+      case 3:
+        return Point(Scalar(0), -p[2], p[1]);
+      case 4:
+        return Point(p[2], Scalar(0), -p[0]);
+      case 5:
+        return Point(-p[1], p[0], Scalar(0));
+    }
+    SOPHUS_ENSURE(false, "i=% is out of bounds", i);
+    return Point::Zero();
+  }
+
   // This provides unsafe read/write access to internal data. SO(3) is
   // represented by an Eigen::Quaternion (four parameters). When using direct
   // write access, the user needs to take care of that the quaternion stays

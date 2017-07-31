@@ -565,6 +565,19 @@ class SO3 : public SO3Base<SO3<Scalar_, Options>> {
     return unit_quaternion_;
   }
 
+  SOPHUS_FUNC static Point generatorTimes(int i, const Point& p) {
+    switch (i) {
+      case 0:
+        return Point(Scalar(0), -p[2], p[1]);
+      case 1:
+        return Point(p[2], Scalar(0), -p[0]);
+      case 2:
+        return Point(-p[1], p[0], Scalar(0));
+    }
+    SOPHUS_ENSURE(false, "i=% is out of bounds", i);
+    return Point::Zero();
+  }
+
  protected:
   // Mutator of unit_quaternion is protected to ensure class invariant.
   //
