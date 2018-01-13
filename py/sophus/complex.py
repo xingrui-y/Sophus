@@ -65,20 +65,17 @@ class Complex:
         return Complex(self.real.subs(x, y), self.imag.subs(x, y))
 
     def simplify(self):
-        return Complex(sympy.simplify(self.real),
-                       sympy.simplify(self.imag))
+        return Complex(sympy.simplify(self.real), sympy.simplify(self.imag))
 
     @staticmethod
     def Da_a_mul_b(a, b):
         """ derivatice of complex muliplication wrt left multiplier a """
-        return sophus.Matrix([[b.real, -b.imag],
-                              [b.imag, b.real]])
+        return sophus.Matrix([[b.real, -b.imag], [b.imag, b.real]])
 
     @staticmethod
     def Db_a_mul_b(a, b):
         """ derivatice of complex muliplication wrt right multiplicand b """
-        return sophus.Matrix([[a.real, -a.imag],
-                              [a.imag, a.real]])
+        return sophus.Matrix([[a.real, -a.imag], [a.imag, a.real]])
 
 
 class TestComplex(unittest.TestCase):
@@ -90,21 +87,17 @@ class TestComplex(unittest.TestCase):
 
     def test_muliplications(self):
         product = self.a * self.a.inv()
-        self.assertEqual(product.simplify(),
-                         Complex.identity())
+        self.assertEqual(product.simplify(), Complex.identity())
         product = self.a.inv() * self.a
-        self.assertEqual(product.simplify(),
-                         Complex.identity())
+        self.assertEqual(product.simplify(), Complex.identity())
 
     def test_derivatives(self):
-        d = sophus.Matrix(2, 2, lambda r, c: sympy.diff(
-            (self.a * self.b)[r], self.a[c]))
-        self.assertEqual(d,
-                         Complex.Da_a_mul_b(self.a, self.b))
-        d = sophus.Matrix(2, 2, lambda r, c: sympy.diff(
-            (self.a * self.b)[r], self.b[c]))
-        self.assertEqual(d,
-                         Complex.Db_a_mul_b(self.a, self.b))
+        d = sophus.Matrix(
+            2, 2, lambda r, c: sympy.diff((self.a * self.b)[r], self.a[c]))
+        self.assertEqual(d, Complex.Da_a_mul_b(self.a, self.b))
+        d = sophus.Matrix(
+            2, 2, lambda r, c: sympy.diff((self.a * self.b)[r], self.b[c]))
+        self.assertEqual(d, Complex.Db_a_mul_b(self.a, self.b))
 
 
 if __name__ == '__main__':
