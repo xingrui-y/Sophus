@@ -288,7 +288,7 @@ class SE3Base {
 
   // Assignment operator.
   //
-  SOPHUS_FUNC SE3Base& operator=(SE3Base const& other) = default;
+  SE3Base& operator=(SE3Base const& other) = default;
 
   // Assignment-like operator from OtherDerived.
   //
@@ -448,7 +448,7 @@ class SE3 : public SE3Base<SE3<Scalar_, Options>> {
 
   // Copy constructor
   //
-  SOPHUS_FUNC SE3(SE3 const& other) = default;
+  SE3(SE3 const& other) = default;
 
   // Copy-like constructor from OtherDerived.
   //

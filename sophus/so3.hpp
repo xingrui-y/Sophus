@@ -305,7 +305,7 @@ class SO3Base {
 
   // Assignment operator.
   //
-  SOPHUS_FUNC SO3Base& operator=(SO3Base const& other) = default;
+  SO3Base& operator=(SO3Base const& other) = default;
 
   // Assignment-like operator from OtherDerived.
   //
@@ -448,7 +448,7 @@ class SO3 : public SO3Base<SO3<Scalar_, Options>> {
 
   // Copy constructor
   //
-  SOPHUS_FUNC SO3(SO3 const& other) = default;
+  SO3(SO3 const& other) = default;
 
   // Copy-like constructor from OtherDerived.
   //
