@@ -190,7 +190,7 @@ class SO2Base {
 
   // Assignment operator
   //
-  SOPHUS_FUNC SO2Base& operator=(SO2Base const& other) = default;
+  SO2Base& operator=(SO2Base const& other) = default;
 
   // Assignment-like operator from OtherDerived.
   //
@@ -354,7 +354,7 @@ class SO2 : public SO2Base<SO2<Scalar_, Options>> {
 
   // Copy constructor
   //
-  SOPHUS_FUNC SO2(SO2 const& other) = default;
+  SO2(SO2 const& other) = default;
 
   // Copy-like constructor from OtherDerived.
   //
